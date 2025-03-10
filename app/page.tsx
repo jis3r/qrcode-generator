@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Download, RefreshCw } from "lucide-react"
+import { ModeToggle } from "@/components/theme-toggle"
 
 export default function QRCodeGenerator() {
   const [text, setText] = useState("https://isermann.dev")
@@ -63,7 +64,10 @@ export default function QRCodeGenerator() {
   }
 
   return (
-    <div className="container mx-auto py-10 px-4">
+    <div className="container mx-auto pb-12 pt-16 px-4 relative">
+      <div className="absolute top-4 right-4">
+        <ModeToggle />
+      </div>
       <Card className="max-w-md mx-auto">
         <CardHeader>
           <CardTitle>QR Code Generator</CardTitle>

@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={GeistMono.className}>
       <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange>
               <main className="min-h-screen bg-background">{children}</main>
