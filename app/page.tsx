@@ -63,6 +63,29 @@ export default function QRCodeGenerator() {
     img.src = svgUrl
   }
 
+  const handleDownloadSVG = () => {
+    if (!qrCodeRef.current) return
+
+    const svg = qrCodeRef.current.querySelector("svg")
+    if (!svg) return
+
+    // Convert SVG to data URL
+    const svgData = new XMLSerializer().serializeToString(svg)
+    const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" })
+    const svgUrl = URL.createObjectURL(svgBlob)
+
+    // Create download link
+    const downloadLink = document.createElement("a")
+    downloadLink.href = svgUrl
+    downloadLink.download = "qrcode.svg"
+    document.body.appendChild(downloadLink)
+    downloadLink.click()
+    document.body.removeChild(downloadLink)
+
+    // Clean up
+    URL.revokeObjectURL(svgUrl)
+  }
+
   return (
     <div className="container mx-auto pb-12 pt-16 px-4 relative">
       <div className="absolute top-4 right-4">
@@ -140,10 +163,16 @@ export default function QRCodeGenerator() {
             <RefreshCw className="mr-2 h-4 w-4" />
             Clear
           </Button>
-          <Button onClick={handleDownload}>
-            <Download className="mr-2 h-4 w-4" />
-            Download PNG
-          </Button>
+          <div className="flex space-x-2">
+            <Button variant="outline" onClick={handleDownloadSVG}>
+              <Download className="mr-2 h-4 w-4" />
+              SVG
+            </Button>
+            <Button onClick={handleDownload}>
+              <Download className="mr-2 h-4 w-4" />
+              PNG
+            </Button>
+          </div>
         </CardFooter>
       </Card>
     </div>
