@@ -10,7 +10,7 @@ import { Slider } from "@/components/ui/slider"
 import { Download, RefreshCw } from "lucide-react"
 
 export default function QRCodeGenerator() {
-  const [text, setText] = useState("https://nextjs.org")
+  const [text, setText] = useState("https://isermann.dev")
   const [size, setSize] = useState(256)
   const [fgColor, setFgColor] = useState("#000000")
   const [bgColor, setBgColor] = useState("#ffffff")
