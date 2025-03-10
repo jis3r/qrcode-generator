@@ -1,6 +1,7 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
+import { ThemeProvider } from "@/components/theme-provider"
 // import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 
@@ -17,7 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistMono.className}>
-          <main className="min-h-screen bg-background">{children}</main>
+      <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange>
+              <main className="min-h-screen bg-background">{children}</main>
+            </ThemeProvider>
       </body>
     </html>
   )
